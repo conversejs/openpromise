@@ -1,5 +1,5 @@
 {
-  "name": "openpromise",
+  "name": "@converse/openpromise",
   "version": "0.0.1",
   "description": "An open promise is a promise which can be resolved or rejected outside of its closure",
   "main": "openpromise.js",
