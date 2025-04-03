@@ -1,6 +1,6 @@
 {
   "name": "@converse/openpromise",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An open promise is a promise which can be resolved or rejected outside of its closure",
   "main": "dist/openpromise.js",
   "types": "dist/openpromise.d.ts",
