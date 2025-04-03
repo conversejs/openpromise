@@ -8,21 +8,34 @@ type OpenPromise<T> = Promise<T> & {
 };
 
 export function getOpenPromise<T>(): OpenPromise<T> {
-    const wrapper: Omit<OpenPromise<T>, 'then' | 'catch' | 'finally'> = {
+    const wrapper = {
         isResolved: false,
         isPending: true,
         isRejected: false,
-        resolve: () => {},
-        reject: () => {},
         [Symbol.toStringTag]: 'Promise'
     };
 
-    const promise = new Promise<T>((resolve, reject) => {
-        wrapper.resolve = resolve;
-        wrapper.reject = reject;
-    }) as OpenPromise<T>;
+    let promise: OpenPromise<T>;
+    let resolve: (value: T | PromiseLike<T>) => void = () => {};
+    let reject: (reason?: any) => void = () => {};
 
-    Object.assign(promise, wrapper);
+    if (typeof Promise.withResolvers === 'function') {
+        const { promise: p, resolve: r, reject: j } = Promise.withResolvers<T>();
+        promise = p as OpenPromise<T>;
+        resolve = r;
+        reject = j;
+    } else {
+        promise = new Promise<T>((r, j) => {
+            resolve = r;
+            reject = j;
+        }) as OpenPromise<T>;
+    }
+
+    Object.assign(promise, {
+        ...wrapper,
+        resolve,
+        reject
+    });
 
     promise.then(
         (v: T) => {
