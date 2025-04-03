@@ -4,7 +4,6 @@ type OpenPromise<T> = Promise<T> & {
     isRejected: boolean;
     resolve: (value: T | PromiseLike<T>) => void;
     reject: (reason?: any) => void;
-    [Symbol.toStringTag]: string;
 };
 
 export function getOpenPromise<T>(): OpenPromise<T> {
