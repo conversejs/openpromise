@@ -2,8 +2,12 @@
   "name": "@converse/openpromise",
   "version": "0.0.1",
   "description": "An open promise is a promise which can be resolved or rejected outside of its closure",
-  "main": "openpromise.js",
+  "main": "dist/openpromise.js",
+  "types": "dist/openpromise.d.ts",
+  "files": ["dist"],
   "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +24,7 @@
   },
   "homepage": "https://github.com/conversejs/openpromise#readme",
   "devDependencies": {
-    "eslint": "^7.25.0"
+    "eslint": "^7.25.0",
+    "typescript": "^5.8.2"
   }
 }

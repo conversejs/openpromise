@@ -1,0 +1,4 @@
+src/
+openpromise.ts
+tsconfig.json
+*.tgz
