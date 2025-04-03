@@ -11,8 +11,7 @@ export function getOpenPromise<T>(): OpenPromise<T> {
     const wrapper = {
         isResolved: false,
         isPending: true,
-        isRejected: false,
-        [Symbol.toStringTag]: 'Promise'
+        isRejected: false
     };
 
     let promise: OpenPromise<T>;
